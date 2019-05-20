@@ -39,6 +39,7 @@ is_winner <- function(config,game){
     sp_outcome <- 'row win'
     winner <- ifelse(unique(grid[which(abs(rowSums(grid)) == config$n),]) == 1,
                      'player 1', 'player 2')
+    score <- ifelse(winner == 'player 1',10,-10)
     
   }else if(any(abs(colSums(grid)) == config$n)){
     status <- 'over'
@@ -46,28 +47,33 @@ is_winner <- function(config,game){
     sp_outcome <- 'column win'
     winner <- ifelse(unique(grid[,which(abs(colSums(grid)) == config$n)]) == 1,
                      'player 1', 'player 2')
+    score <- ifelse(winner == 'player 1',10,-10)
     
   }else if(abs(sum(diag(grid))) == config$n){
     status <- 'over'
     outcome <- 'win'
     sp_outcome <- 'diagonal win'
     winner <- ifelse(sum(diag(grid))/config$n == 1,'player 1', 'player 2')
+    score <- ifelse(winner == 'player 1',10,-10)
     
   } else if(abs(sum(diag(apply(grid,2,rev)))) == config$n){
     status <- 'over'
     outcome <- 'win'
     sp_outcome <- 'diagonal win'
     winner <- ifelse(sum(diag(apply(grid,2,rev)))/config$n == 1,'player 1', 'player 2')
+    score <- ifelse(winner == 'player 1',10,-10)
   } else if(!(0 %in% game)){
     status <- 'over'
     outcome <- 'tie'
     sp_outcome <- NA
     winner <- NA
+    score <- 0
   } else{
     status <- 'in play'
     outcome <- NA
     sp_outcome <- NA
     winner <- NA
+    score <- 0
   }
   
   return(list(
@@ -75,6 +81,7 @@ is_winner <- function(config,game){
     ,status = status
     ,sp_outcome = sp_outcome
     ,winner = winner
+    ,score = score
   ))
   
 }

@@ -15,12 +15,12 @@ source('functions/utilities.R')
 # Define Config -----------------------------------------------------------
 
 config <- list(
-    n = 10
+    n = 5
   , window_size = 100
-  ,player1 = plr_random
+  ,player1 = plr_minmax
   ,player2 = plr_random
-  ,draw_board = F
-  ,silent = T
+  ,draw_board = T
+  ,silent = F
 )
 
 play_game <- function(config){
@@ -34,7 +34,7 @@ play_game <- function(config){
   
   while(game_status == 'in play'){
     
-    move <- players[[player]](game)
+    move <- players[[player]](config,game,plr = player)$move
     game[move] <- player
     if(config$draw_board){draw_game_board(config,game)}
   
@@ -56,18 +56,6 @@ play_game <- function(config){
 
 play_game(config)
 
-p1_wins <- 0
-p2_wins <- 0
-tie <- 0
-for(i in 1:10000){
-  x <- play_game(config)
-  if(x[[1]] == 'tie'){
-   tie <- tie + 1 
-  }else if(x[[2]] == 'player 2'){
-    p2_wins <- p2_wins + 1
-  }else if(x[[2]] == 'player 1'){
-    p1_wins <- p1_wins + 1
-  }
-}
+
 
 
