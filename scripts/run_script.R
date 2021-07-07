@@ -2,20 +2,16 @@ gc()
 rm(list = ls())
 cat('\014')
 
-
 # Libraries ---------------------------------------------------------------
-
-
 
 # Define Source Files -----------------------------------------------------
 source('functions/player_profiles.R')
 source('functions/utilities.R')
 
-
 # Define Config -----------------------------------------------------------
 
 config <- list(
-    n = 5
+    n = 4
   , window_size = 100
   ,player1 = plr_minmax
   ,player2 = plr_random

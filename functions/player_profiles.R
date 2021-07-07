@@ -1,10 +1,4 @@
 
-
-
-
-
-
-
 plr_random <- function(config,game,plr){
   allowed_play <- which(game == 3)
   if(length(allowed_play) > 1){
@@ -36,8 +30,8 @@ plr_minmax <- function(config,game,plr){
                 ,utility = is_winner(config,game)$score))
   } 
   
-  n <- config$n^2
-  pot_score <- rep(0,n)
+  # n <- config$n^2
+  # pot_score <- rep(0,n)
   
   # Get scores if there are any terminal nodes in next step
   for(i in allowed_play){
