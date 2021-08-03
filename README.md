@@ -13,7 +13,7 @@ scripts/run_scripts.R
   
 ## Features
 
-[x] Random Selection Player
-[x] Min-max based Player
-[] Q-Learning based Player
-[] Support for 4x4 and higher plays
+[x] Random Selection Player  
+[x] Min-max based Player  
+[] Q-Learning based Player  
+[] Support for 4x4 and higher plays  
