@@ -3,25 +3,33 @@ rm(list = ls())
 cat('\014')
 
 # Libraries ---------------------------------------------------------------
+library(data.table)
+library(glue)
 
 # Define Source Files -----------------------------------------------------
 source('functions/player_profiles.R')
 source('functions/utilities.R')
+source('functions/qlearn_tab.R')
 
 # Define Config -----------------------------------------------------------
 
 config <- list(
-    n = 4
+    n = 3
   , window_size = 100
-  ,player1 = plr_minmax
-  ,player2 = plr_random
+  #,player1 = plr_minmax
+  #,player2 = plr_random
   ,draw_board = T
   ,silent = F
+  ,initialize_random_state = T
+  ,rl_config = list(
+    exploration = 0,      # % of times agent doesnt take the optimal action
+    learning_rate = 0.8     
+  )
 )
 
 play_game <- function(config){
   
-  game <- rep(3,config$n^2)
+  game <- initialize_game(config)
   if(config$draw_board){draw_game_board(config,game)}
   
   players <- c(config$player1,config$player2)
